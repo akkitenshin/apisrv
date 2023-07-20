@@ -1,6 +1,7 @@
 package apiserver
 
 import (
+	"git/internal/app/store"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 )
@@ -9,6 +10,7 @@ type APIserver struct {
 	config *Config
 	logger *logrus.Logger
 	router *mux.Router
+	store *store.Store
 }
 
 func New(config *Config) *APIserver {
@@ -23,6 +25,8 @@ func (s *APIserver) Start() error {
 	if err := s.configureLogger(); err != nil{
 		return err
 	}
+
+	
 
 	s.logger.Info("starting api server")
 
